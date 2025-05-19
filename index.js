@@ -39,10 +39,10 @@ app.post('/webhook', async (req, res) => {
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     res.json({ reply: result.fulfillmentText });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error procesando Dialogflow');
-  }
+ } catch (error) {
+  console.error("ERROR AL CONSULTAR DIALOGFLOW:", error.message, error);
+  res.status(500).send('Error procesando Dialogflow');
+}
 });
 
 const port = process.env.PORT || 3000;
